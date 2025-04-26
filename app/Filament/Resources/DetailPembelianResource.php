@@ -22,6 +22,7 @@ class DetailPembelianResource extends Resource
     protected static ?string $model = DetailPembelian::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Menu Transaksi';
 
     public static function form(Form $form): Form
     {

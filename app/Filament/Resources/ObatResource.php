@@ -22,6 +22,7 @@ class ObatResource extends Resource
     protected static ?string $model = Obat::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Menu Utama';
 
     public static function form(Form $form): Form
     {

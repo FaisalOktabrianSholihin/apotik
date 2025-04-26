@@ -21,6 +21,7 @@ class KategoriObatResource extends Resource
     protected static ?string $model = KategoriObat::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Menu Utama';
 
     public static function form(Form $form): Form
     {
