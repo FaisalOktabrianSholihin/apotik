@@ -9,6 +9,7 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Card;
+use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
@@ -33,6 +34,20 @@ class ObatResource extends Resource
                         TextInput::make('satuan'),
                         TextInput::make('harga_beli'),
                         TextInput::make('harga_jual'),
+
+                        Select::make('kategori_obat_id')
+                            ->relationship('kategori', 'nama') // relasi model + field yang mau ditampilkan
+                            ->searchable() // biar bisa cari nama kategori
+                            ->preload()    // preload data supaya cepat
+                            ->label('Kategori Obat')
+                            ->required(),
+
+                        Select::make('supplier_id')
+                            ->relationship('supplier', 'nama')
+                            ->searchable()
+                            ->preload()
+                            ->label('Supplier')
+                            ->required(),
                     ])
                     ->columns(2),
             ]);
@@ -47,6 +62,13 @@ class ObatResource extends Resource
                 TextColumn::make('satuan')->sortable()->searchable(),
                 TextColumn::make('harga_beli')->sortable()->searchable(),
                 TextColumn::make('harga_jual')->sortable()->searchable(),
+
+                TextColumn::make('kategori.nama')
+                    ->label('Kategori Obat')
+                    ->sortable()
+                    ->searchable(),
+
+                TextColumn::make('supplier.nama')->label('Supplier')->sortable()->searchable(),
             ])
             ->filters([
                 //
