@@ -3,22 +3,22 @@
 namespace App\Filament\Resources;
 
 use Filament\Forms;
-use App\Models\Obat;
 use Filament\Tables;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
+use App\Models\KategoriObat;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Card;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Resources\ObatResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\ObatResource\RelationManagers;
+use App\Filament\Resources\KategoriObatResource\Pages;
+use App\Filament\Resources\KategoriObatResource\RelationManagers;
 
-class ObatResource extends Resource
+class KategoriObatResource extends Resource
 {
-    protected static ?string $model = Obat::class;
+    protected static ?string $model = KategoriObat::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -29,10 +29,6 @@ class ObatResource extends Resource
                 Card::make()
                     ->schema([
                         TextInput::make('nama'),
-                        TextInput::make('stok'),
-                        TextInput::make('satuan'),
-                        TextInput::make('harga_beli'),
-                        TextInput::make('harga_jual'),
                     ])
                     ->columns(2),
             ]);
@@ -43,10 +39,6 @@ class ObatResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('nama')->sortable()->searchable(),
-                TextColumn::make('stok')->sortable()->searchable(),
-                TextColumn::make('satuan')->sortable()->searchable(),
-                TextColumn::make('harga_beli')->sortable()->searchable(),
-                TextColumn::make('harga_jual')->sortable()->searchable(),
             ])
             ->filters([
                 //
@@ -72,9 +64,9 @@ class ObatResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListObats::route('/'),
-            'create' => Pages\CreateObat::route('/create'),
-            'edit' => Pages\EditObat::route('/{record}/edit'),
+            'index' => Pages\ListKategoriObats::route('/'),
+            'create' => Pages\CreateKategoriObat::route('/create'),
+            'edit' => Pages\EditKategoriObat::route('/{record}/edit'),
         ];
     }
 }
